@@ -102,6 +102,47 @@ textarea{width:100%;font:inherit;border-radius:8px;border:1px solid var(--bd);pa
 .cx label{display:block;font-weight:600;margin:0 0 6px;min-width:0}
 .cx input,.cx textarea{width:100%;margin-bottom:12px;background:var(--bg)}
 .cx .wide{width:100%;padding:12px;font-weight:700}
+
+:root{--hl:#f7e9c6;--hlb:#e3cd97;--hlt:#4a3300;--hli:#9a5f00}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--hl:#3b3015;--hlb:#5a4a22;--hlt:#f3e0ae;--hli:#e8b550}}
+:root[data-theme="dark"]{--hl:#3b3015;--hlb:#5a4a22;--hlt:#f3e0ae;--hli:#e8b550}
+.tile.m{background:var(--hl);border-color:var(--hlb);color:var(--hlt);font-weight:700}
+.tile.m svg{stroke:var(--hli)}
+#cr:empty{display:none}
+#cf .wide{width:100%;padding:12px;font-weight:700}
+
+.warn{background:var(--hl);border:1px solid var(--hlb);color:var(--hlt);border-radius:14px;padding:12px 14px;margin:6px 0 12px;line-height:1.5}
+.warn b{display:block;margin-bottom:2px}
+.pc{border:1px solid var(--bd);border-radius:16px;padding:12px 14px;background:var(--card);margin-bottom:10px}
+.pc .ph{display:flex;justify-content:space-between;align-items:center}
+.pc .pa{font-size:20px;font-weight:700;margin:4px 0 8px}
+.pc .pa.neg{color:#d9534f}
+.pc .row{margin:0}
+.sg{min-width:28px;text-align:center;border-radius:8px;padding:0 8px;font-weight:700}
+.sg.pos{background:var(--ac);color:var(--acfg)}
+.sg.neg{background:#d9534f;color:#fff}
+#mpt:empty{display:none}
+#mpf{margin:10px 0}
+#mpf .row{flex-direction:column;align-items:stretch;gap:4px;margin:10px 0}
+#mpf .row input{width:100%}
+.cx select{width:100%;margin-bottom:12px}
+.sgn{display:flex;align-items:center;justify-content:center;padding:12px;border-radius:12px;border:1.5px solid var(--bd);background:var(--card);color:var(--fg);font-weight:700}
+.sgn.on{border-color:var(--ac);background:var(--bg);color:var(--fg);box-shadow:inset 0 0 0 1px var(--ac)}
+
+:root{--bg:#f6faf6;--card:#eaf3ec;--bd:#cddfd2;--tile:#fff;--tb:#9fc9b0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tile:#16211b;--tb:#2f5a45}}
+:root[data-theme="dark"]{--tile:#16211b;--tb:#2f5a45}
+.tile{background:var(--tile);border:1.5px solid var(--tb);border-radius:14px}
+.tile:active{background:var(--card)}
+
+.tile.wd{grid-column:1/-1;flex-direction:row;justify-content:flex-start;gap:14px;padding:16px;min-height:0;font-size:16px;font-weight:700;text-align:left;border-color:var(--ac)}
+.tile.wd small{display:block;font-weight:400;font-size:13px;color:var(--mut)}
+#bwf .row{flex-wrap:nowrap;margin:0}
+#bwf .row input{flex:1;min-width:0;margin-bottom:10px}
+#bwf .row .bn{flex:2}
+#bwf .row button{padding:8px 10px;margin-bottom:10px}
+#bwr{margin-top:12px}
+.cutl{font-size:14px;color:var(--mut);margin-top:10px;line-height:1.7}
 </style>
 </head>
 <body>
@@ -111,7 +152,9 @@ textarea{width:100%;font:inherit;border-radius:8px;border:1px solid var(--bd);pa
 <button class="unit" id="gset"><span id="hs"></span><span>Badlein</span></button>
 <div class="tg">
 <button class="tile w" data-go="map"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 8l8-3 8 3 8-3v19l-8 3-8-3-8 3zM12 5v19M20 8v19"/></svg><span>Map Measurement<small>Map par corner tap karke naapein</small></span></button>
-<button class="tile" data-go="her"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 25L21 7l7 18z"/></svg><span>Heron’s Triangle</span></button><button class="tile" data-go="par"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 24h24l-6-14H10z"/></svg><span>Parallel Plot</span></button><button class="tile" data-go="rt"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 26V8l20 18z"/></svg><span>Right Angle Triangle</span></button><button class="tile" data-go="sq"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="7" width="18" height="18" rx="1"/></svg><span>Square Area</span></button><button class="tile" data-go="rect"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="24" height="16" rx="1"/></svg><span>Rectangle Area</span></button><button class="tile" data-go="conv"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 11h20m-5-5l5 5-5 5M26 21H6m5-5l-5 5 5 5"/></svg><span>Unit Conversion</span></button><button class="tile" data-go="pad"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="4" width="18" height="24" rx="2"/><path d="M11 10h10M11 16h.01M16 16h.01M21 16h.01M11 22h.01M16 22h.01M21 22h.01"/></svg><span>Calculator</span></button>
+<button class="tile m" data-go="map"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 8l8-3 8 3 8-3v19l-8 3-8-3-8 3zM12 5v19M20 8v19"/></svg><span>Map Measurement</span></button><button class="tile" data-go="her"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 25L21 7l7 18z"/></svg><span>Heron’s Triangle</span></button><button class="tile" data-go="par"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 24h24l-6-14H10z"/></svg><span>Parallel Plot</span></button><button class="tile" data-go="rt"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 26V8l20 18z"/></svg><span>Right Angle Triangle</span></button><button class="tile" data-go="sq"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="7" width="18" height="18" rx="1"/></svg><span>Square Area</span></button><button class="tile" data-go="rect"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="24" height="16" rx="1"/></svg><span>Rectangle Area</span></button><button class="tile" data-go="conv"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 11h20m-5-5l5 5-5 5M26 21H6m5-5l-5 5 5 5"/></svg><span>Unit Conversion</span></button><button class="tile" data-go="pad"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="4" width="18" height="24" rx="2"/><path d="M11 10h10M11 16h.01M16 16h.01M21 16h.01M11 22h.01M16 22h.01M21 22h.01"/></svg><span>Calculator</span></button>
+<button class="tile" data-go="mp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 6h14v12H4z"/><path d="M18 12l10 6-10 8z"/></svg><span>Multi-shape Plot</span></button>
+<button class="tile wd" data-go="bw"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5h24v22H4z"/><path d="M13 5v22M13 16h15"/></svg><span>Batwara<small>Hissedaaron me plot baantein</small></span></button>
 </div>
 <p class="hn">Batwara, save aur PDF report jald aayenge.</p>
 </div>
@@ -126,6 +169,12 @@ textarea{width:100%;font:inherit;border-radius:8px;border:1px solid var(--bd);pa
 <div class="sides">Decimal = 435.6 sqft, acre = 43560 sqft aur gaj = 9 sqft poore India me ek jaise hain. Dhur, kattha aur bigha jile ke hisaab se badalte hain, isliye apne jile ka maan khud daal sakte hain. 1 kattha = 20 dhur aur 1 bigha = 20 kattha sirf andaza hai, apne yahan ke hisaab se badlein.</div>
 </div></div>
 <div id="pg" class="scr" hidden><button class="back">← Wapas</button><h2 id="pgt"></h2><div id="pgb"></div></div>
+<div id="mp" class="scr" hidden><button class="back">← Wapas</button><h2>Multi-shape Plot</h2>
+<div class="warn"><b>Zaroori note</b><span>Hisse ek-dusre par chadhne nahi chahiye. Chadhne par wo jagah do baar gini jayegi aur kul area zyada aayega. Plot ko aise baantein ki har hissa alag ho aur beech me koi khali jagah na chhute.</span></div>
+<div id="mpl"></div><div id="mpf"></div><div class="res" id="mpt"></div></div>
+<div id="bw" class="scr" hidden><button class="back">← Wapas</button><h2>Batwara</h2>
+<div class="warn"><b>Zaroori note</b><span>Ye sirf andaza hai. Asli batwara amin ya sarkari record se hi mana jayega. Zameen ki keemat, rasta, paani, ped ya ghar jaisi baatein app nahi dekhta, unhe hissedaar aapas me tay karein.</span></div>
+<div id="bwf"></div><div id="bwr"></div></div>
 <div id="map" class="scr" hidden><button class="back">← Wapas</button><h2>Map Measurement</h2>
 <div class="row">
   <div class="btn up">Dusra map upload<input type="file" id="file" accept="image/*,application/pdf"></div>
@@ -349,12 +398,32 @@ const TR=[
 ['Apna sandesh likhein','Write your message','अपना संदेश लिखें'],['Bhejein','Send','भेजें'],['Pehle sandesh likhein.','Write a message first.','पहले संदेश लिखें।'],
 ['Sandesh copy ho gaya. Ise email ya WhatsApp par bhej dein.','Message copied. Please send it by email or WhatsApp.','संदेश कॉपी हो गया। इसे ईमेल या WhatsApp पर भेज दें।'],
 ['Sawal ya sujhav ke liye email karein:','For questions or suggestions, email:','सवाल या सुझाव के लिए ईमेल करें:'],['Email jald add hoga.','Email address coming soon.','ईमेल पता जल्द जोड़ा जाएगा।'],
+['Calculate karein','Calculate','गणना करें'],
+['Batwara','Land Division','बँटवारा'],['Plot ki lambai (ft)','Plot length (ft)','प्लॉट की लंबाई (फुट)'],['Ye sirf chitra hai: plot ko aayat maana gaya hai ({l} × {w} ft).','This is only a sketch: the plot is assumed to be a rectangle ({l} × {w} ft).','यह सिर्फ़ चित्र है: प्लॉट को आयत माना गया है ({l} × {w} फुट)।'],['Kaat {n}: ek kone se {d} ft par, lambai {l} ft','Cut {n}: {d} ft from one corner, length {l} ft','कट {n}: एक कोने से {d} फुट पर, लंबाई {l} फुट'],['Hissedaaron me plot baantein','Divide a plot among shareholders','हिस्सेदारों में प्लॉट बाँटें'],
+['Ye sirf andaza hai. Asli batwara amin ya sarkari record se hi mana jayega. Zameen ki keemat, rasta, paani, ped ya ghar jaisi baatein app nahi dekhta, unhe hissedaar aapas me tay karein.','This is only an estimate. A real land division is valid only through an amin or the official record. The app does not consider land value, access paths, water, trees or houses, so shareholders must settle those among themselves.','यह सिर्फ़ अंदाज़ा है। असली बँटवारा अमीन या सरकारी रिकॉर्ड से ही माना जाएगा। ज़मीन की कीमत, रास्ता, पानी, पेड़ या घर जैसी बातें ऐप नहीं देखता, उन्हें हिस्सेदार आपस में तय करें।'],
+['Plot kahan se lein','Plot source','प्लॉट कहाँ से लें'],['Map Measurement ka plot','Plot from Map Measurement','मैप से नापा प्लॉट'],['Multi-shape Plot ka kul area','Total area of Multi-shape Plot','मिश्रित प्लॉट का कुल क्षेत्रफल'],['Khud area daalein','Enter area myself','खुद क्षेत्रफल डालें'],
+['Kul area (sqft)','Total area (sq ft)','कुल क्षेत्रफल (वर्ग फुट)'],['Road wali side','Road side','रोड वाली भुजा'],['Side {a}→{b} ({l} ft)','Side {a}→{b} ({l} ft)','भुजा {a}→{b} ({l} फुट)'],['Kaat ki disha','Direction of cuts','कट की दिशा'],
+['Road ke lambvat (har hisse ko road mile)','Perpendicular to the road (every part touches the road)','रोड के लंबवत (हर हिस्से को रोड मिले)'],['Road ke samantar','Parallel to the road','रोड के समांतर'],
+['Hissedaar','Shareholder','हिस्सेदार'],['Hissa (anupaat)','Share (ratio)','हिस्सा (अनुपात)'],['Anupaat daalein, jaise 1, 1, 2. Barabar hisse ke liye sabme 1.','Enter a ratio like 1, 1, 2. For equal shares put 1 for everyone.','अनुपात डालें, जैसे 1, 1, 2। बराबर हिस्से के लिए सबमें 1।'],
+['+ Hissedaar jodein','+ Add shareholder','+ हिस्सेदार जोड़ें'],['Batwara karein','Divide','बँटवारा करें'],
+['Pehle Map Measurement me kam se kam 3 pin lagakar plot banayein aur scale set karein.','First make a plot in Map Measurement with at least 3 pins and set the scale.','पहले मैप में कम से कम 3 पिन लगाकर प्लॉट बनाएँ और स्केल सेट करें।'],
+['Multi-shape Plot me pehle hisse jodein.','Add parts in Multi-shape Plot first.','पहले मिश्रित प्लॉट में हिस्से जोड़ें।'],
+['Kul area aur sabhi anupaat sahi daalein.','Enter a valid total area and all ratios.','कुल क्षेत्रफल और सभी अनुपात सही डालें।'],
+['Kaat {n}: pin {a} se {d} ft par, lambai {l} ft','Cut {n}: {d} ft from pin {a}, length {l} ft','कट {n}: पिन {a} से {d} फुट पर, लंबाई {l} फुट'],
+['Kaat {n}: road se {d} ft andar, lambai {l} ft','Cut {n}: {d} ft from the road, length {l} ft','कट {n}: रोड से {d} फुट अंदर, लंबाई {l} फुट'],
+['Multi-shape Plot','Multi-shape Plot','मिश्रित आकार का प्लॉट'],['+ Hissa jodein','+ Add part','+ हिस्सा जोड़ें'],['Hissa {n}','Part {n}','हिस्सा {n}'],
+['Jodein (+)','Add (+)','जोड़ें (+)'],['Ghatayein (−)','Subtract (−)','घटाएँ (−)'],['Shape','Shape','आकार'],['Hissa save karein','Save part','हिस्सा सेव करें'],
+['Raddh karein','Cancel','रद्द करें'],['Hatayein','Remove','हटाएँ'],['Kul area','Total area','कुल क्षेत्रफल'],['Zaroori note','Important note','ज़रूरी नोट'],
+['Abhi koi hissa nahi. Plot ko seedhi lines se hisson me baant kar ek-ek hissa jodein.','No parts yet. Split the plot into parts with straight lines and add them one by one.','अभी कोई हिस्सा नहीं। प्लॉट को सीधी रेखाओं से हिस्सों में बाँटकर एक-एक हिस्सा जोड़ें।'],
+['Hisse ek-dusre par chadhne nahi chahiye. Chadhne par wo jagah do baar gini jayegi aur kul area zyada aayega. Plot ko aise baantein ki har hissa alag ho aur beech me koi khali jagah na chhute.','Parts must not overlap each other. An overlapping area is counted twice, so the total comes out too high. Split the plot so every part is separate and no gap is left in between.','हिस्से एक-दूसरे पर चढ़ने नहीं चाहिए। चढ़ने पर वह जगह दो बार गिनी जाएगी और कुल क्षेत्रफल ज़्यादा आएगा। प्लॉट को ऐसे बाँटें कि हर हिस्सा अलग हो और बीच में कोई खाली जगह न छूटे।'],
+['Hisse ek-dusre par chadhe na hon, warna kul area zyada aayega.','Make sure parts do not overlap, or the total will be too high.','हिस्से एक-दूसरे पर न चढ़ें, वरना कुल क्षेत्रफल ज़्यादा आएगा।'],
+['Ghataye hue hisse ka area jode hue hisson se zyada hai, jo sambhav nahi.','The subtracted area is larger than the added area, which is not possible.','घटाया गया क्षेत्रफल जोड़े गए क्षेत्रफल से ज़्यादा है, जो संभव नहीं।'],
 ['Sujhav ya raay','Suggestions or opinions','सुझाव या राय'],['Kuch galat chal raha hai','Something is not working','कुछ गलत चल रहा है'],['Aapka sandesh','Your message','आपका संदेश'],['Email ya phone (optional)','Email or phone (optional)','ईमेल या फ़ोन (वैकल्पिक)'],['Kya hua, kaun si screen par? Jo steps kiye wo likhein.','What happened, and on which screen? Describe the steps you took.','क्या हुआ, किस स्क्रीन पर? जो स्टेप किए वो लिखें।']
 ];
 const D={en:{},hi:{}};TR.forEach(r=>{D.en[r[0]]=r[1];D.hi[r[0]]=r[2]});
 const tr=s=>LANG==='hl'?s:((D[LANG]||{})[s]||s);
 const trp=(s,o)=>tr(s).replace(/\{(\w+)\}/g,(m,k)=>o[k]);
-const OG=new WeakMap(),SKIP='#msg,#cf,#cr,#res,#hs,#ct,#pgt,#pgb';
+const OG=new WeakMap(),SKIP='#msg,#cf,#cr,#res,#hs,#ct,#pgt,#pgb,#mpl,#mpf,#mpt,#bwf,#bwr';
 function applyLang(){
   const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),a=[];let n;
   while(n=w.nextNode())a.push(n);
@@ -406,7 +475,7 @@ const L=v=>SET.len==='m'?v*3.28084:v, lu=()=>tr(SET.len==='m'?'meter':'feet');
 function U(){const k=SET.kd*SET.dhur;return[['Square feet',1],['Square meter',10.7639104],['Gaj (sq yard)',9],['Decimal',435.6],['Dhur',SET.dhur],['Kattha',k],['Bigha',k*SET.bk],['Acre',43560]]}
 function areas(sq){let h='<div class="big">';U().forEach(u=>{h+='<div>'+tr(u[0])+'<b>'+(sq/u[1]).toFixed(u[1]===1||u[1]===10.7639104?1:3)+'</b></div>'});return h+'</div>'}
 function show(id){
-  ['home','calc','set','map','pg'].forEach(i=>{$('#'+i).hidden=i!==id});CUR=id;window.scrollTo(0,0);
+  ['home','calc','set','map','pg','mp','bw'].forEach(i=>{$('#'+i).hidden=i!==id});CUR=id;window.scrollTo(0,0);
   if(id==='home')$('#hs').textContent=tr(SET.pre==='vaishali'?'Vaishali, Bihar':'Apna maan')+': 1 '+tr('dhur')+' = '+SET.dhur+' '+tr('sqft')+', '+tr('lambai')+' '+lu();
   if(id==='map'){if(!window._ml){window._ml=1;loadDefault()}else if(page||img){size();fit();calc()}}
 }
@@ -424,18 +493,18 @@ const T={
 };
 function openCalc(k){REOPEN=()=>openCalc(k);
   const t=T[k];$('#ct').textContent=tr(t[0]);$('#cf').onclick=null;
-  $('#cf').innerHTML=t[1].map(f=>'<div class="row"><label>'+tr(f[1])+' ('+lu()+')</label><input type="number" inputmode="decimal" data-k="'+f[0]+'" placeholder="'+tr(f[2]||'')+'"></div>').join('');
+  $('#cf').innerHTML=t[1].map(f=>'<div class="row"><label>'+tr(f[1])+' ('+lu()+')</label><input type="number" inputmode="decimal" data-k="'+f[0]+'" placeholder="'+tr(f[2]||'')+'"></div>').join('')+'<div class="row"><button id="cbtn" class="on wide">'+tr('Calculate karein')+'</button></div>';
   const go=()=>{const v={};$('#cf').querySelectorAll('input').forEach(i=>{v[i.dataset.k]=nm(i.value)});
     if(!(t[4]||t[1].map(f=>f[0])).every(k=>v[k]>0)){$('#cr').textContent=tr('Zaroori sides daalein.');return}
     const a=t[2](v);
     $('#cr').innerHTML=a>0?areas(a)+(t[3]?'<div class="sides">'+tr(t[3](v))+'</div>':''):tr('Ye naap se shape nahi banti. Sides ya diagonal dobara dekhein.')};
-  $('#cf').oninput=go;go();show('calc');
+  $('#cbtn').onclick=go;$('#cf').oninput=()=>{$('#cr').textContent=''};$('#cr').textContent='';show('calc');
 }
 function openConv(){REOPEN=openConv;
   $('#ct').textContent=tr('Unit Conversion');$('#cf').onclick=null;
-  $('#cf').innerHTML='<div class="row"><input type="number" id="cvv" inputmode="decimal" placeholder="'+tr('value')+'"><select id="cvu">'+U().map((u,i)=>'<option value="'+i+'">'+tr(u[0])+'</option>').join('')+'</select></div>';
+  $('#cf').innerHTML='<div class="row"><input type="number" id="cvv" inputmode="decimal" placeholder="'+tr('value')+'"><select id="cvu">'+U().map((u,i)=>'<option value="'+i+'">'+tr(u[0])+'</option>').join('')+'</select></div>'+'<div class="row"><button id="cbtn" class="on wide">'+tr('Calculate karein')+'</button></div>';
   const go=()=>{const v=nm($('#cvv').value);$('#cr').innerHTML=v>0?areas(v*U()[$('#cvu').value][1]):tr('Value daalein.')};
-  $('#cf').oninput=go;$('#cf').onchange=go;go();show('calc');
+  $('#cbtn').onclick=go;$('#cf').oninput=()=>{$('#cr').textContent=''};$('#cf').onchange=()=>{$('#cr').textContent=''};$('#cr').textContent='';show('calc');
 }
 function ev(s){s=s.replace(/\s/g,'');let i=0;
   const E=()=>{let v=M();while(s[i]==='+'||s[i]==='-'){const o=s[i++],r=M();v=o==='+'?v+r:v-r}return v};
@@ -461,9 +530,125 @@ $('#spre').onchange=()=>{SET.pre=$('#spre').value;if(SET.pre==='vaishali')SET.dh
   SET.pre=SET.dhur===95?'vaishali':'custom';$('#spre').value=SET.pre;sv()}});
 $('#sl').onchange=()=>{SET.len=$('#sl').value;sv()};
 document.querySelectorAll('[data-go]').forEach(b=>{b.onclick=()=>{const g=b.dataset.go;
-  if(g==='map')show('map');else if(g==='conv')openConv();else if(g==='pad')openPad();else openCalc(g)}});
+  if(g==='map')show('map');else if(g==='conv')openConv();else if(g==='pad')openPad();else if(g==='mp')openMp();else if(g==='bw')openBw();else openCalc(g)}});
 document.querySelectorAll('.back').forEach(b=>{b.onclick=()=>show('home')});
 $('#gset').onclick=()=>{loadSet();show('set')};
+
+let MP=[],MPK='rect',MPS=1,MPE=-1,MPO=false;
+const MPKS=['rect','sq','rt','her','par'],SN={rect:'Rectangle Area',sq:'Square Area',rt:'Right Angle Triangle',her:'Heron’s Triangle',par:'Parallel Plot'};
+function openMp(){REOPEN=openMp;show('mp');mpDraw()}
+function mpDraw(){
+  $('#mpl').innerHTML=MP.map((p,i)=>'<div class="pc"><div class="ph"><b>'+trp('Hissa {n}',{n:i+1})+'</b><span class="sg '+(p.s>0?'pos':'neg')+'">'+(p.s>0?'+':'−')+'</span></div><div>'+tr(SN[p.k])+'</div><div class="pa'+(p.s>0?'':' neg')+'">'+(p.s>0?'':'−')+p.a.toFixed(1)+' '+tr('sqft')+'</div><div class="row"><button data-e="'+i+'">'+tr('Badlein')+'</button><button data-r="'+i+'">'+tr('Hatayein')+'</button></div></div>').join('')||'<div class="msg" style="margin-bottom:10px">'+tr('Abhi koi hissa nahi. Plot ko seedhi lines se hisson me baant kar ek-ek hissa jodein.')+'</div>';
+  const tot=MP.reduce((a,p)=>a+p.s*p.a,0);
+  $('#mpt').innerHTML=!MP.length?'':(tot>0?'<h2 style="margin-top:0">'+tr('Kul area')+'</h2>'+areas(tot)+'<div class="sides">'+tr('Hisse ek-dusre par chadhe na hon, warna kul area zyada aayega.')+'</div>':tr('Ghataye hue hisse ka area jode hue hisson se zyada hai, jo sambhav nahi.'));
+  mpForm();
+}
+function mpForm(){
+  const box=$('#mpf');
+  if(!MPO){box.innerHTML='<button id="mpa" class="on wide">'+tr('+ Hissa jodein')+'</button>';$('#mpa').onclick=()=>{MPO=true;MPE=-1;mpForm()};return}
+  const t=T[MPK],ed=MPE>=0?MP[MPE]:null,f=ed&&ed.u!==SET.len?(SET.len==='m'?1/3.28084:3.28084):1;
+  box.innerHTML='<div class="cx"><label>'+tr('Shape')+'</label><select id="mpk">'+MPKS.map(k=>'<option value="'+k+'"'+(k===MPK?' selected':'')+'>'+tr(SN[k])+'</option>').join('')+'</select>'+
+    '<div class="oc"><button class="sgn'+(MPS>0?' on':'')+'" data-s="1">'+tr('Jodein (+)')+'</button><button class="sgn'+(MPS<0?' on':'')+'" data-s="-1">'+tr('Ghatayein (−)')+'</button></div>'+
+    t[1].map(x=>'<div class="row"><label>'+tr(x[1])+' ('+lu()+')</label><input type="number" inputmode="decimal" data-k="'+x[0]+'" placeholder="'+tr(x[2]||'')+'"></div>').join('')+
+    '<button id="mps" class="on wide">'+tr('Hissa save karein')+'</button><button id="mpc" class="wide" style="margin-top:8px">'+tr('Raddh karein')+'</button><div class="msg" id="mpm" hidden style="margin-top:10px"></div></div>';
+  if(ed&&ed.k===MPK)box.querySelectorAll('input[data-k]').forEach(i=>{const v=ed.v[i.dataset.k];if(v)i.value=+(v*f).toFixed(2)});
+  $('#mpk').onchange=()=>{MPK=$('#mpk').value;mpForm()};
+  box.querySelectorAll('.sgn').forEach(b=>{b.onclick=()=>{MPS=+b.dataset.s;box.querySelectorAll('.sgn').forEach(x=>x.classList.toggle('on',x===b))}});
+  $('#mpc').onclick=()=>{MPO=false;MPE=-1;mpForm()};
+  $('#mps').onclick=()=>{
+    const v={};box.querySelectorAll('input[data-k]').forEach(i=>{v[i.dataset.k]=nm(i.value)});
+    const m=$('#mpm');m.hidden=false;
+    if(!(t[4]||t[1].map(x=>x[0])).every(k=>v[k]>0)){m.textContent=tr('Zaroori sides daalein.');return}
+    const a=t[2](v);
+    if(!(a>0)){m.textContent=tr('Ye naap se shape nahi banti. Sides ya diagonal dobara dekhein.');return}
+    const p={k:MPK,v:v,s:MPS,a:a,u:SET.len};
+    if(MPE>=0)MP[MPE]=p;else MP.push(p);
+    MPO=false;MPE=-1;mpDraw();
+  };
+}
+$('#mpl').onclick=e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.r!==undefined){MP.splice(+b.dataset.r,1);MPO=false;MPE=-1;mpDraw()}
+  else if(b.dataset.e!==undefined){const p=MP[+b.dataset.e];MPE=+b.dataset.e;MPK=p.k;MPS=p.s;MPO=true;mpForm();$('#mpf').scrollIntoView({behavior:'smooth'})}
+};
+
+const COL=['#2f9e6b','#e0a526','#3b82c4','#c2546b','#7a62c9','#d9783a','#1f9aa8','#8a6d3b'];
+let BW=[{n:'',r:'1'},{n:'',r:'1'}],BWS='map',BWR=0,BWD='perp',BWA='',BWL='';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const parea=P=>{let s=0;for(let i=0;i<P.length;i++){const p=P[i],q=P[(i+1)%P.length];s+=p[0]*q[1]-q[0]*p[1]}return Math.abs(s)/2};
+function clipHP(P,u,c,le){const o=[],n=P.length,f=p=>le?c-(u[0]*p[0]+u[1]*p[1]):(u[0]*p[0]+u[1]*p[1])-c;
+  for(let i=0;i<n;i++){const a=P[i],b=P[(i+1)%n],fa=f(a),fb=f(b);if(fa>=0)o.push(a);if((fa>=0)!==(fb>=0)){const t=fa/(fa-fb);o.push([a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])])}}
+  return o}
+function chordPts(P,u,c){const w=[-u[1],u[0]],r=[];
+  for(let i=0;i<P.length;i++){const a=P[i],b=P[(i+1)%P.length],fa=u[0]*a[0]+u[1]*a[1]-c,fb=u[0]*b[0]+u[1]*b[1]-c;
+    if((fa>=0)!==(fb>=0)){const t=fa/(fa-fb),x=[a[0]+t*(b[0]-a[0]),a[1]+t*(b[1]-a[1])];r.push([w[0]*x[0]+w[1]*x[1],x])}}
+  return r.sort((p,q)=>p[0]-q[0])}
+function openBw(){REOPEN=openBw;if($('#bws'))bwRead();show('bw');bwForm()}
+function bwRead(){
+  document.querySelectorAll('#bwf .bn').forEach((e,i)=>{if(BW[i])BW[i].n=e.value});
+  document.querySelectorAll('#bwf .br').forEach((e,i)=>{if(BW[i])BW[i].r=e.value});
+  if($('#bws'))BWS=$('#bws').value;if($('#bwa'))BWA=$('#bwa').value;if($('#bwl'))BWL=$('#bwl').value;if($('#bwrd'))BWR=+$('#bwrd').value;if($('#bwd'))BWD=$('#bwd').value;
+}
+function bwForm(){
+  const o=(v,k)=>'<option value="'+v+'"'+(BWS===v?' selected':'')+'>'+tr(k)+'</option>';
+  let h='<div class="cx"><label>'+tr('Plot kahan se lein')+'</label><select id="bws">'+o('map','Map Measurement ka plot')+o('multi','Multi-shape Plot ka kul area')+o('man','Khud area daalein')+'</select>';
+  if(BWS==='man')h+='<label>'+tr('Kul area (sqft)')+'</label><input id="bwa" type="number" inputmode="decimal" value="'+esc(BWA)+'">';
+  if(BWS!=='map')h+='<label>'+tr('Plot ki lambai (ft)')+'</label><input id="bwl" type="number" inputmode="decimal" placeholder="'+tr('optional')+'" value="'+esc(BWL)+'"><label>'+tr('Kaat ki disha')+'</label><select id="bwd"><option value="perp"'+(BWD==='perp'?' selected':'')+'>'+tr('Road ke lambvat (har hisse ko road mile)')+'</option><option value="par"'+(BWD==='par'?' selected':'')+'>'+tr('Road ke samantar')+'</option></select>';
+  if(BWS==='map'&&pts.length>=3&&ppf){const n=pts.length;if(BWR>=n)BWR=0;
+    h+='<label>'+tr('Road wali side')+'</label><select id="bwrd">'+pts.map((p,i)=>{const q=pts[(i+1)%n];return '<option value="'+i+'"'+(BWR===i?' selected':'')+'>'+trp('Side {a}→{b} ({l} ft)',{a:i+1,b:(i+1)%n+1,l:(Math.hypot(p[0]-q[0],p[1]-q[1])/ppf).toFixed(1)})+'</option>'}).join('')+'</select>'+
+    '<label>'+tr('Kaat ki disha')+'</label><select id="bwd"><option value="perp"'+(BWD==='perp'?' selected':'')+'>'+tr('Road ke lambvat (har hisse ko road mile)')+'</option><option value="par"'+(BWD==='par'?' selected':'')+'>'+tr('Road ke samantar')+'</option></select>';
+  }
+  h+='<label>'+tr('Hissedaar')+'</label>'+BW.map((p,i)=>'<div class="row"><input class="bn" type="text" placeholder="'+tr('Hissedaar')+' '+(i+1)+'" value="'+esc(p.n)+'"><input class="br" type="number" inputmode="decimal" value="'+esc(p.r)+'" placeholder="'+tr('Hissa (anupaat)')+'">'+(BW.length>2?'<button data-x="'+i+'">'+tr('Hatayein')+'</button>':'')+'</div>').join('')+
+    '<div class="sides" style="margin:0 0 10px">'+tr('Anupaat daalein, jaise 1, 1, 2. Barabar hisse ke liye sabme 1.')+'</div><button id="bwadd" class="wide">'+tr('+ Hissedaar jodein')+'</button><button id="bwgo" class="on wide" style="margin-top:8px">'+tr('Batwara karein')+'</button></div>';
+  $('#bwf').innerHTML=h;
+}
+function bwSvg(P,parts,cuts,u,names){
+  const xs=P.map(p=>p[0]),ys=P.map(p=>p[1]),x0=Math.min(...xs),y0=Math.min(...ys),w=Math.max(...xs)-x0,hh=Math.max(...ys)-y0,m=Math.max(w,hh),pd=m*.06,fs=m/22;
+  let s='<svg viewBox="'+(x0-pd)+' '+(y0-pd)+' '+(w+2*pd)+' '+(hh+2*pd)+'" style="width:100%;max-height:340px">';
+  parts.forEach((q,i)=>{const c=COL[i%COL.length];s+='<polygon points="'+q.map(p=>p.join(',')).join(' ')+'" fill="'+c+'" fill-opacity=".35" stroke="'+c+'" stroke-width="2" vector-effect="non-scaling-stroke"/>'});
+  s+='<polygon points="'+P.map(p=>p.join(',')).join(' ')+'" fill="none" style="stroke:var(--fg)" stroke-width="2" vector-effect="non-scaling-stroke"/>';
+  cuts.forEach(c=>{const r=chordPts(P,u,c);for(let i=0;i+1<r.length;i+=2)s+='<line x1="'+r[i][1][0]+'" y1="'+r[i][1][1]+'" x2="'+r[i+1][1][0]+'" y2="'+r[i+1][1][1]+'" stroke="#d9534f" stroke-width="2.5" stroke-dasharray="6 4" vector-effect="non-scaling-stroke"/>'});
+  const seen=new Set();
+  parts.forEach(q=>{const n=q.length;for(let i=0;i<n;i++){const a=q[i],b=q[(i+1)%n],dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy);if(len<m*.05)continue;
+    const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,k=mx.toFixed(1)+','+my.toFixed(1);if(seen.has(k))continue;seen.add(k);
+    let ang=Math.atan2(dy,dx)*180/Math.PI;if(ang>90||ang<-90)ang+=180;
+    s+='<text x="'+mx+'" y="'+my+'" transform="rotate('+ang+' '+mx+' '+my+')" text-anchor="middle" dy="-'+(fs*.25)+'" font-size="'+(fs*.78)+'" font-weight="600" style="fill:var(--fg);paint-order:stroke;stroke:var(--bg);stroke-linejoin:round" stroke-width="'+(fs*.25)+'">'+len.toFixed(1)+' ft</text>'}});
+  parts.forEach((q,i)=>{if(!q.length)return;const cx=q.reduce((a,p)=>a+p[0],0)/q.length,cy=q.reduce((a,p)=>a+p[1],0)/q.length;
+    s+='<text x="'+cx+'" y="'+cy+'" text-anchor="middle" font-size="'+fs+'" font-weight="700" style="fill:var(--fg)">'+esc(names[i])+'</text>'});
+  return s+'</svg>';
+}
+function bwGo(){
+  bwRead();const out=$('#bwr'),err=k=>{out.innerHTML='<div class="msg">'+tr(k)+'</div>'};
+  const rs=BW.map(p=>parseFloat(p.r)),sum=rs.reduce((a,b)=>a+b,0),names=BW.map((p,i)=>p.n.trim()||tr('Hissedaar')+' '+(i+1));
+  let total=0,P=null;
+  if(BWS==='map'){if(pts.length<3||!ppf)return err('Pehle Map Measurement me kam se kam 3 pin lagakar plot banayein aur scale set karein.');P=pts.map(p=>[p[0]/ppf,p[1]/ppf]);total=parea(P)}
+  else if(BWS==='multi'){total=MP.reduce((a,p)=>a+p.s*p.a,0);if(!MP.length||!(total>0))return err('Multi-shape Plot me pehle hisse jodein.')}
+  else total=nm(BWA);
+  if(!(total>0)||rs.some(r=>!(r>0)))return err('Kul area aur sabhi anupaat sahi daalein.');
+  let h='',info=[],sch=false,ln=0,wd=0;
+  if(!P){ln=nm(BWL)>0?nm(BWL):Math.sqrt(total);wd=total/ln;P=[[0,0],[ln,0],[ln,wd],[0,wd]];sch=true}
+  if(P){const ri=sch?0:BWR;
+    const n=P.length,a=P[ri],b=P[(ri+1)%n];let ux=b[0]-a[0],uy=b[1]-a[1];const L=Math.hypot(ux,uy)||1;ux/=L;uy/=L;
+    let u=BWD==='perp'?[ux,uy]:[-uy,ux];
+    if(BWD!=='perp'){const cx=P.reduce((s,p)=>s+p[0],0)/n,cy=P.reduce((s,p)=>s+p[1],0)/n;if(u[0]*(cx-a[0])+u[1]*(cy-a[1])<0)u=[-u[0],-u[1]]}
+    const pr=p=>u[0]*p[0]+u[1]*p[1],vals=P.map(pr),lo=Math.min(...vals),hi=Math.max(...vals),base=pr(a);
+    const solve=T=>{let l=lo,r=hi;for(let q=0;q<60;q++){const m=(l+r)/2;parea(clipHP(P,u,m,true))<T?l=m:r=m}return(l+r)/2};
+    const cuts=[];let cum=0;for(let k=0;k<rs.length-1;k++){cum+=rs[k];cuts.push(solve(total*cum/sum))}
+    const parts=rs.map((r,k)=>{let q=P;if(k>0)q=clipHP(q,u,cuts[k-1],false);if(k<cuts.length)q=clipHP(q,u,cuts[k],true);return q});
+    cuts.forEach((c,k)=>{const r=chordPts(P,u,c);let len=0;for(let i=0;i+1<r.length;i+=2)len+=r[i+1][0]-r[i][0];
+      info.push(trp(BWD==='perp'?(sch?'Kaat {n}: ek kone se {d} ft par, lambai {l} ft':'Kaat {n}: pin {a} se {d} ft par, lambai {l} ft'):'Kaat {n}: road se {d} ft andar, lambai {l} ft',{n:k+1,a:ri+1,d:(c-base).toFixed(1),l:len.toFixed(1)}))});
+    h+=bwSvg(P,parts,cuts,u,names);
+    if(sch)h+='<div class="sides">'+trp('Ye sirf chitra hai: plot ko aayat maana gaya hai ({l} × {w} ft).',{l:ln.toFixed(1),w:wd.toFixed(1)})+'</div>';
+  }
+  h+=rs.map((r,i)=>{const sq=total*r/sum;return '<div class="pc"><div class="ph"><b>'+esc(names[i])+'</b><span class="sg pos">'+(r/sum*100).toFixed(1)+'%</span></div><div class="pa">'+sq.toFixed(1)+' '+tr('sqft')+'</div><div class="sides">'+U().filter((x,j)=>j>=3&&j<=6).map(x=>tr(x[0])+' '+(sq/x[1]).toFixed(2)).join(', ')+'</div></div>'}).join('');
+  if(info.length)h+='<div class="cutl">'+info.join('<br>')+'</div>';
+  out.innerHTML=h;out.scrollIntoView({behavior:'smooth'});
+}
+$('#bwf').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+  if(b.id==='bwadd'){bwRead();BW.push({n:'',r:'1'});bwForm()}
+  else if(b.id==='bwgo')bwGo();
+  else if(b.dataset.x!==undefined){bwRead();BW.splice(+b.dataset.x,1);bwForm()}};
+$('#bwf').onchange=e=>{if(e.target.id==='bws'){bwRead();bwForm();$('#bwr').innerHTML=''}};
 $('#mb').onclick=()=>ovl('mpn');$('#lg').onclick=()=>ovl('lpn');
 $('#ovl').onclick=e=>{if(e.target.id==='ovl')ovx()};
 document.querySelectorAll('[data-pg]').forEach(b=>{b.onclick=()=>nav(b.dataset.pg)});
