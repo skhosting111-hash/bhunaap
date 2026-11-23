@@ -168,6 +168,47 @@ textarea{width:100%;font:inherit;border-radius:8px;border:1px solid var(--bd);pa
 #mbar button.hl{background:var(--ac);color:var(--acfg)}
 .dg{display:block;width:150px;margin:0 auto 6px;color:var(--ac)}
 .dot{display:inline-block;min-width:22px;height:22px;line-height:22px;text-align:center;border-radius:11px;color:#fff;font-size:12px;margin-right:8px;text-shadow:0 0 2px rgba(0,0,0,.55)}
+.bwc{position:relative;height:min(62vh,460px);min-height:260px;border:1.5px solid var(--bd);border-radius:16px;overflow:hidden;background-color:var(--bg);background-image:radial-gradient(var(--bd) 1px,transparent 1px);background-size:16px 16px}
+.bwc svg{position:absolute;inset:0;width:100%;height:100%}
+.bwt{position:absolute;top:8px;left:8px;z-index:2;display:flex;gap:6px}
+.bwt button{box-shadow:0 1px 5px rgba(0,0,0,.22);background:var(--bg)}
+
+#cfab{position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:17;width:54px;height:54px;border-radius:27px;border:0;background:var(--ac);color:var(--acfg);box-shadow:0 6px 18px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;padding:0}
+#cfab svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+body[data-scr="map"] #cfab{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+body[data-scr="map"] #res,body[data-scr="map"] #scalerow,body[data-scr="map"] #msh{bottom:calc(156px + env(safe-area-inset-bottom,0px))}
+.scr{padding-bottom:76px}
+#map.scr{padding-bottom:0}
+#csheet{position:fixed;left:0;right:0;bottom:0;margin:0 auto;max-width:460px;z-index:18;background:var(--bg);border:1px solid var(--bd);border-bottom:0;border-radius:24px 24px 0 0;box-shadow:0 -10px 34px rgba(0,0,0,.28);padding:8px 14px calc(14px + env(safe-area-inset-bottom,0px));transform:translateY(105%);transition:transform .22s ease}
+#csheet.open{transform:none}
+@media (prefers-reduced-motion:reduce){#csheet{transition:none}}
+.cgrab{width:40px;height:4px;border-radius:2px;background:var(--bd);margin:0 auto 8px}
+.chd{display:flex;align-items:center;gap:8px}
+.chd b{flex:1;font-size:16px}
+.chip{padding:6px 12px;border-radius:16px;font-size:13px;border:1.5px solid var(--ac);color:var(--ac);background:none}
+#cx{width:36px;height:36px;padding:0;border-radius:18px;border:0;background:var(--card);font-size:16px;color:var(--fg)}
+.cdisp{margin:8px 0 10px;padding:10px 14px;border-radius:16px;background:var(--card);text-align:right;min-height:88px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+#cexp{color:var(--mut);font-size:16px;min-height:22px;word-break:break-all}
+#cres{font-size:36px;font-weight:700;letter-spacing:-.02em;word-break:break-all;line-height:1.15}
+.ckeys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ckeys button{height:52px;border-radius:16px;border:0;font-size:22px;background:var(--card);color:var(--fg);padding:0}
+.ckeys .op{background:var(--hl);color:var(--hlt);font-size:24px}
+.ckeys .fn{color:var(--ac);font-weight:700}
+.ckeys .eq{background:var(--ac);color:var(--acfg);font-weight:700}
+.ckeys button:active{filter:brightness(.9)}
+#mbar{gap:0;padding:6px 4px}
+#mbar button{font-size:9.5px}
+
+#mbar{overflow-x:auto;overflow-y:hidden;gap:2px;padding:5px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;touch-action:pan-x;scroll-snap-type:x proximity}
+#mbar::-webkit-scrollbar{display:none}
+#mbar button{flex:0 0 auto;min-width:52px;padding:6px 5px 4px;font-size:10px;gap:2px;scroll-snap-align:start}
+#mbar button svg{width:21px;height:21px}
+#mbar.ml{-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px);mask-image:linear-gradient(90deg,transparent,#000 26px)}
+#mbar.mr{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent)}
+#mbar.ml.mr{-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}
+.fc,#res{bottom:calc(90px + env(safe-area-inset-bottom,0px))}
+body[data-scr="map"] #cfab{bottom:calc(98px + env(safe-area-inset-bottom,0px))}
+body[data-scr="map"] #res,body[data-scr="map"] #scalerow,body[data-scr="map"] #msh{bottom:calc(158px + env(safe-area-inset-bottom,0px))}
 </style>
 </head>
 <body>
@@ -190,7 +231,9 @@ textarea{width:100%;font:inherit;border-radius:8px;border:1px solid var(--bd);pa
 <div class="row"><label>1 dhur =</label><input type="number" id="sd" inputmode="decimal"> sqft</div>
 <div class="row"><label>1 kattha =</label><input type="number" id="sk" inputmode="decimal"> dhur</div>
 <div class="row"><label>1 bigha =</label><input type="number" id="sb" inputmode="decimal"> kattha</div>
-<div class="row"><label>Lambai ikai</label><select id="sl"><option value="ft">Feet</option><option value="m">Meter</option></select></div>
+<div class="row"><label>Lambai ikai</label><select id="sl"><option value="ft">Feet</option><option value="m">Meter</option><option value="kadi">Kadi</option></select></div>
+<div class="row"><label>1 kadi =</label><input type="number" id="skd" inputmode="decimal"> ft</div>
+<div class="sides" style="margin:0 0 8px">Kadi (link) chain (zarib) ka 1/100 hai, yani lagbhag 0.66 ft. Aapke yahan alag ho to badlein.</div>
 <div class="sides">Decimal = 435.6 sqft, acre = 43560 sqft aur gaj = 9 sqft poore India me ek jaise hain. Dhur, kattha aur bigha jile ke hisaab se badalte hain, isliye apne jile ka maan khud daal sakte hain. 1 kattha = 20 dhur aur 1 bigha = 20 kattha sirf andaza hai, apne yahan ke hisaab se badlein.</div>
 </div></div>
 <div id="pg" class="scr" hidden><button class="back">← Wapas</button><h2 id="pgt"></h2><div id="pgb"></div></div>
@@ -210,7 +253,14 @@ textarea{width:100%;font:inherit;border-radius:8px;border:1px solid var(--bd);pa
 <div class="row"><span>Map me Uttar kis taraf hai</span><select id="nrt"><option value="0">Upar</option><option value="1">Daayein</option><option value="2">Neeche</option><option value="3">Baayein</option></select></div>
 <div class="row"><span>Map scale 1:</span><input type="number" id="rs" value="4000" inputmode="numeric"><button id="auto" class="on">Auto feet set</button></div>
 </div>
-<div id="mbar"><button id="m1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15L15 3l6 6L9 21z"/><path d="M7 11l2 2M10 8l2 2M13 5l2 2"/></svg><span>Scale</span></button><button id="m2" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17l3-10 11-2-1 12z"/></svg><span>Naapo</span></button><button id="undo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h9a6 6 0 010 12H8"/></svg><span>Undo</span></button><button id="clr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/></svg><span>Clear</span></button><button id="zi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></svg><span>Zoom +</span></button><button id="zo"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4M8 11h6"/></svg><span>Zoom −</span></button><button id="mmore"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg><span>Aur</span></button></div></div>
+<div id="mbar"><button id="m1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15L15 3l6 6L9 21z"/><path d="M7 11l2 2M10 8l2 2M13 5l2 2"/></svg><span>Scale</span></button><button id="m2" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17l3-10 11-2-1 12z"/></svg><span>Naapo</span></button><button id="mbt"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M10 5v14M10 12h10"/></svg><span>Batwara</span></button><button id="undo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h9a6 6 0 010 12H8"/></svg><span>Undo</span></button><button id="clr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/></svg><span>Clear</span></button><button id="zi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4M11 8v6M8 11h6"/></svg><span>Zoom +</span></button><button id="zo"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4M8 11h6"/></svg><span>Zoom −</span></button><button id="mmore"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/></svg><span>Aur</span></button></div></div>
+<button id="cfab" aria-label="Calculator"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 7.5h7M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01"/></svg></button>
+<div id="csheet" hidden>
+<div class="cgrab"></div>
+<div class="chd"><b>Calculator</b><button id="cins" class="chip">Field me daalein</button><button id="cx" aria-label="Close">✕</button></div>
+<div class="cdisp"><div id="cexp"></div><div id="cres">0</div></div>
+<div class="ckeys" id="ckeys"><button data-k="C" class="fn">C</button><button data-k="(" class="fn">(</button><button data-k=")" class="fn">)</button><button data-k="÷" class="op">÷</button><button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="×" class="op">×</button><button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="−" class="op">−</button><button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="+" class="op">+</button><button data-k="0">0</button><button data-k=".">.</button><button data-k="⌫" class="fn">⌫</button><button data-k="=" class="eq">=</button></div>
+</div>
 <div class="ov" id="ovl" hidden>
 <div class="pn" id="mpn" hidden>
 <div class="mh"><svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="currentColor" fill-opacity=".18"/><path d="M12 14l24-4 4 24-26 4z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><g fill="currentColor"><circle cx="12" cy="14" r="3"/><circle cx="36" cy="10" r="3"/><circle cx="40" cy="34" r="3"/><circle cx="14" cy="38" r="3"/></g></svg><div><b>Bhu Mapi</b><small>Zameen ka area, kuch hi tap me</small></div></div>
@@ -276,21 +326,21 @@ function draw(){
     pts.forEach(p=>dot(p,'#0b7a4b'));
     if(ppf){const segs=n>2?n:n-1;
       for(let i=0;i<segs;i++){const a=pts[i],b=pts[(i+1)%n];
-        label((d(a,b)/ppf).toFixed(1)+' ft'+(n>2?' '+sideDir(i):''),(X(a)+X(b))/2+6,(Y(a)+Y(b))/2-6)}}
+        label((d(a,b)/ppf).toFixed(1)+' ft'+altL(d(a,b)/ppf)+(n>2?' '+sideDir(i):''),(X(a)+X(b))/2+6,(Y(a)+Y(b))/2-6)}}
   }
 }
 function calc(){
   const r=$('#res');
   if(!ppf||pts.length<2){r.hidden=true;return}
   const n=pts.length,segs=n>2?n:n-1,sides=[];let per=0;
-  for(let i=0;i<segs;i++){const l=d(pts[i],pts[(i+1)%n])/ppf;per+=l;sides.push((i+1)+'→'+(((i+1)%n)+1)+': '+l.toFixed(1)+' ft'+(n>2?' ('+sideDir(i)+')':''))}
+  for(let i=0;i<segs;i++){const l=d(pts[i],pts[(i+1)%n])/ppf;per+=l;sides.push((i+1)+'→'+(((i+1)%n)+1)+': '+l.toFixed(1)+' ft'+altL(l)+(n>2?' ('+sideDir(i)+')':''))}
   let h='',sq=0;
   if(n>2){
     let a=0;for(let i=0;i<n;i++){const p=pts[i],q=pts[(i+1)%n];a+=p[0]*q[1]-q[0]*p[1]}
     sq=Math.abs(a)/2/(ppf*ppf);
     h+=areas(sq);
   }
-  h+='<div class="sides">'+tr('Perimeter')+': '+per.toFixed(1)+' ft<br>'+sides.join(' · ')+'</div>';
+  h+='<div class="sides">'+tr('Perimeter')+': '+per.toFixed(1)+' ft'+altL(per)+'<br>'+sides.join(' · ')+'</div>';
   r.hidden=false;r.innerHTML='<div class="rsum"><b>'+(n>2?sq.toFixed(1)+' '+tr('sqft')+' · '+(sq/SET.dhur).toFixed(2)+' '+tr('Dhur'):per.toFixed(1)+' ft')+'</b><span>▾</span></div><div class="rdet">'+h+'</div>';
 }
 function zoomAt(cx,cy,f){
@@ -350,13 +400,16 @@ window.loadDefault=()=>openPdf(Uint8Array.from(atob(PDFB64),c=>c.charCodeAt(0)),
 </script>
 
 <script>
-const DEF={pre:'vaishali',dhur:95,kd:20,bk:20,len:'ft'};
+const DEF={pre:'vaishali',dhur:95,kd:20,bk:20,len:'ft',kadi:0.66};
 let SET=Object.assign({},DEF);
 try{Object.assign(SET,JSON.parse(localStorage.getItem('zn-set')||'{}'))}catch(e){}
 const sv=()=>{try{localStorage.setItem('zn-set',JSON.stringify(SET))}catch(e){}};
 const nm=v=>{const n=parseFloat(v);return isFinite(n)?n:0};
 
-const CONTACT_EMAIL='';
+const CONTACT_EMAIL='';   // feedback aur contact ke liye email, jaise 'naam@example.com'
+const CONTACT_WA='';      // WhatsApp number desh code ke saath bina + ke, jaise '91XXXXXXXXXX'
+const CONTACT_FORM='https://api.web3forms.com/submit';  // Web3Forms ka link
+const WEB3_KEY='7e57c4aa-f0f6-4488-b7ee-2e40c1449e96';  // Web3Forms access key (isse aapke email par message aata hai)
 const I=p=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+p+'</svg>';
 let LANG=SET.lang||'hl',REOPEN=()=>{},CUR='home';
 const TR=[
@@ -407,7 +460,7 @@ const TR=[
 ['Dono samantar sides ke beech ki seedhi doori','Straight distance between the two parallel sides','दोनों समांतर भुजाओं के बीच की सीधी दूरी'],
 ['khali = Side 1','empty = Side 1','खाली = भुजा 1'],['khali = Side 2','empty = Side 2','खाली = भुजा 2'],['khali = doori se nikalega','empty = worked out from the distance','खाली = दूरी से निकालेगा'],['optional','optional','वैकल्पिक'],
 ['Diagonal se nikala hua sahi area.','Exact area worked out using the diagonal.','विकर्ण से निकाला गया सही क्षेत्रफल।'],
-['Andaza: corners ko 90° maan kar. Diagonal daalenge to sahi area aayega.','Estimate, assuming 90° corners. Add the diagonal for the exact area.','अंदाज़ा: कोनों को 90° मानकर। विकर्ण डालेंगे तो सही क्षेत्रफल आएगा।'],
+['Andaza: aamne-saamne sides ka average. Chitra diye hue sides se banaya hai; diagonal daalenge to sahi area aur sahi shape aayegi.','Estimate: average of opposite sides. The sketch follows the sides you gave; add the diagonal for the exact area and shape.','अंदाज़ा: आमने-सामने की भुजाओं का औसत। चित्र दी गई भुजाओं से बना है; विकर्ण डालेंगे तो सही क्षेत्रफल और सही आकृति आएगी।'],
 ['Samantar sides ke beech ki doori se nikala hua area.','Area worked out from the distance between the parallel sides.','समांतर भुजाओं के बीच की दूरी से निकाला गया क्षेत्रफल।'],
 ['Hypotenuse (karn)','Hypotenuse','कर्ण'],
 ['Home','Home','होम'],['Setting','Settings','सेटिंग'],['About','About','हमारे बारे में'],['Privacy Policy','Privacy Policy','गोपनीयता नीति'],['Disclaimer','Disclaimer','अस्वीकरण'],['Contact','Contact','संपर्क'],
@@ -428,7 +481,7 @@ const TR=[
 ['Kul area aur sabhi anupaat sahi daalein.','Enter a valid total area and all ratios.','कुल क्षेत्रफल और सभी अनुपात सही डालें।'],
 ['Kaat {n}: pin {a} se {d} ft par, lambai {l} ft','Cut {n}: {d} ft from pin {a}, length {l} ft','कट {n}: पिन {a} से {d} फुट पर, लंबाई {l} फुट'],
 ['Kaat {n}: road se {d} ft andar, lambai {l} ft','Cut {n}: {d} ft from the road, length {l} ft','कट {n}: रोड से {d} फुट अंदर, लंबाई {l} फुट'],
-['Scale','Scale','स्केल'],['Uttar-Paschim se Dakshin-Purab','North-West to South-East','उत्तर-पश्चिम से दक्षिण-पूर्व'],['Kone: A = Uttar-Paschim, B = Uttar-Purab, C = Dakshin-Purab, D = Dakshin-Paschim.','Corners: A = North-West, B = North-East, C = South-East, D = South-West.','कोने: A = उत्तर-पश्चिम, B = उत्तर-पूर्व, C = दक्षिण-पूर्व, D = दक्षिण-पश्चिम।'],['Sides','Sides','भुजाएँ'],['Disha andaza: chitra me Uttar upar maana gaya hai.','Direction is assumed: North is taken as up in the sketch.','दिशा अंदाज़न: चित्र में उत्तर ऊपर माना गया है।'],['Uttar (North)','North','उत्तर'],['Purab (East)','East','पूर्व'],['Dakshin (South)','South','दक्षिण'],['Paschim (West)','West','पश्चिम'],
+['Scale','Scale','स्केल'],['Apna sandesh Feedback aur Bug report page se bhej sakte hain.','You can send your message from the Feedback & Bug report page.','आप फीडबैक और बग रिपोर्ट पेज से अपना संदेश भेज सकते हैं।'],['Bhej rahe hain...','Sending...','भेज रहे हैं...'],['Sandesh bhej diya gaya. Dhanyavaad!','Message sent. Thank you!','संदेश भेज दिया गया। धन्यवाद!'],['Sandesh nahi ja paya. Internet check karein aur dobara try karein.','Could not send. Check your internet and try again.','संदेश नहीं जा सका। इंटरनेट जाँचें और दोबारा कोशिश करें।'],['Field me daalein','Insert in field','फ़ील्ड में डालें'],['Kadi','Kadi (link)','कड़ी'],['kadi','kadi','कड़ी'],['1 kadi =','1 kadi =','1 कड़ी ='],['ft','ft','फुट'],['Kadi (link) chain (zarib) ka 1/100 hai, yani lagbhag 0.66 ft. Aapke yahan alag ho to badlein.','Kadi (link) is 1/100 of a chain (zarib), about 0.66 ft. Change it if your area differs.','कड़ी (लिंक) चेन (ज़रीब) का 1/100 है, यानी लगभग 0.66 फुट। आपके यहाँ अलग हो तो बदलें।'],['Uttar-Paschim se Dakshin-Purab','North-West to South-East','उत्तर-पश्चिम से दक्षिण-पूर्व'],['Kone: A = Uttar-Paschim, B = Uttar-Purab, C = Dakshin-Purab, D = Dakshin-Paschim.','Corners: A = North-West, B = North-East, C = South-East, D = South-West.','कोने: A = उत्तर-पश्चिम, B = उत्तर-पूर्व, C = दक्षिण-पूर्व, D = दक्षिण-पश्चिम।'],['Sides','Sides','भुजाएँ'],['Disha andaza: chitra me Uttar upar maana gaya hai.','Direction is assumed: North is taken as up in the sketch.','दिशा अंदाज़न: चित्र में उत्तर ऊपर माना गया है।'],['Uttar (North)','North','उत्तर'],['Purab (East)','East','पूर्व'],['Dakshin (South)','South','दक्षिण'],['Paschim (West)','West','पश्चिम'],
 ['Diagonal (Uttar-Paschim kone se Dakshin-Purab kone tak)','Diagonal (from the North-West corner to the South-East corner)','विकर्ण (उत्तर-पश्चिम कोने से दक्षिण-पूर्व कोने तक)'],
 ['khali = Uttar jaisa','empty = same as North','खाली = उत्तर जैसा'],['khali = Purab jaisa','empty = same as East','खाली = पूर्व जैसा'],
 ['Uttar aur Dakshin ke beech ki seedhi doori','Straight distance between North and South','उत्तर और दक्षिण के बीच की सीधी दूरी'],
@@ -474,7 +527,7 @@ hi:'<p>यहाँ निकला क्षेत्रफल सिर्फ�
 contact:['Contact',null],fb:['Feedback aur Bug report',null]};
 function pgBody(p){
   if(PG[p][1])return PG[p][1][LANG];
-  if(p==='contact')return '<p>'+tr('Sawal ya sujhav ke liye email karein:')+'</p><p>'+(CONTACT_EMAIL?'<a href="mailto:'+CONTACT_EMAIL+'">'+CONTACT_EMAIL+'</a>':tr('Email jald add hoga.'))+'</p>';
+  if(p==='contact')return '<p>'+tr('Sawal ya sujhav ke liye email karein:')+'</p><p>'+(CONTACT_EMAIL?'<a href="mailto:'+CONTACT_EMAIL+'">'+CONTACT_EMAIL+'</a>':tr(CONTACT_FORM?'Apna sandesh Feedback aur Bug report page se bhej sakte hain.':'Email jald add hoga.'))+'</p>'+(CONTACT_WA?'<p><a href="https://wa.me/'+CONTACT_WA+'">WhatsApp</a></p>':'');
   return '<div class="oc"><button class="ot on" data-t="Feedback">'+I('<path d="M5 5h14v10H9l-4 4z"/>')+'<b>'+tr('Feedback')+'</b><small>'+tr('Sujhav ya raay')+'</small></button><button class="ot" data-t="Bug report">'+I('<rect x="8" y="9" width="8" height="10" rx="4"/><path d="M12 9V6M8 12H4M16 12h4M8 17l-3 2M16 17l3 2M9 6l3-2 3 2"/>')+'<b>'+tr('Bug report')+'</b><small>'+tr('Kuch galat chal raha hai')+'</small></button></div><div class="cx"><label>'+tr('Aapka sandesh')+'</label><textarea id="fbm" rows="6" placeholder="'+tr('Apna sandesh likhein')+'"></textarea><label>'+tr('Email ya phone (optional)')+'</label><input id="fbc" type="text"><button id="fbs" class="on wide">'+tr('Bhejein')+'</button></div><div class="msg" id="fbr" hidden style="margin-top:10px"></div>';
 }
 function openPg(p){
@@ -484,7 +537,16 @@ function openPg(p){
     const m=$('#fbm').value.trim(),r=$('#fbr');r.hidden=false;
     if(!m){r.textContent=tr('Pehle sandesh likhein.');return}
     const t=FT()+': '+m+($('#fbc').value.trim()?'\nContact: '+$('#fbc').value.trim():'')+'\n\n['+LANG+', '+navigator.userAgent+']';
-    if(CONTACT_EMAIL){location.href='mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent('Bhu Mapi: '+FT())+'&body='+encodeURIComponent(t)}
+    const subj='Bhu Mapi: '+FT();
+    if(CONTACT_FORM){
+      r.textContent=tr('Bhej rahe hain...');
+      fetch(CONTACT_FORM,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(Object.assign({access_key:WEB3_KEY,subject:subj,from_name:'Bhu Mapi',name:'Bhu Mapi user',message:t},/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($('#fbc').value.trim())?{email:$('#fbc').value.trim()}:{}))})
+        .then(x=>x.json()).then(d=>{if(!d.success)throw 0;r.textContent=tr('Sandesh bhej diya gaya. Dhanyavaad!');$('#fbm').value=''})
+        .catch(()=>{r.textContent=tr('Sandesh nahi ja paya. Internet check karein aur dobara try karein.')});
+    }
+    else if(CONTACT_EMAIL){location.href='mailto:'+CONTACT_EMAIL+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(t)}
+    else if(CONTACT_WA){window.open('https://wa.me/'+CONTACT_WA+'?text='+encodeURIComponent(t),'_blank')}
+    else if(navigator.share){navigator.share({title:subj,text:t}).catch(()=>{})}
     else{try{navigator.clipboard.writeText(t)}catch(e){}r.textContent=tr('Sandesh copy ho gaya. Ise email ya WhatsApp par bhej dein.')}
   };
 }
@@ -495,18 +557,18 @@ function setLang(l){
   SET.lang=l;LANG=l;sv();applyLang();ovx();
   if(CUR==='home')show('home');else if(CUR==='set'){loadSet();show('set')}else if(CUR==='map'){show('map');setMode(mode)}else REOPEN();
 }
-const L=v=>SET.len==='m'?v*3.28084:v, lu=()=>tr(SET.len==='m'?'meter':'feet');
+const LFu=u=>u==='m'?3.28084:u==='kadi'?(SET.kadi>0?SET.kadi:0.66):1,LF=()=>LFu(SET.len),L=v=>v*LF(),altL=ft=>SET.len==='ft'?'':' ('+(ft/LF()).toFixed(SET.len==='m'?2:1)+' '+ul()+')',lu=()=>tr(SET.len==='m'?'meter':SET.len==='kadi'?'kadi':'feet');
 function U(){const k=SET.kd*SET.dhur;return[['Square feet',1],['Square meter',10.7639104],['Gaj (sq yard)',9],['Decimal',435.6],['Dhur',SET.dhur],['Kattha',k],['Bigha',k*SET.bk],['Acre',43560]]}
 function areas(sq){let h='<div class="big">';U().forEach(u=>{h+='<div>'+tr(u[0])+'<b>'+(sq/u[1]).toFixed(u[1]===1||u[1]===10.7639104?1:3)+'</b></div>'});return h+'</div>'}
 function show(id){
-  ['home','calc','set','map','pg','mp','bw'].forEach(i=>{$('#'+i).hidden=i!==id});CUR=id;window.scrollTo(0,0);
+  ['home','calc','set','map','pg','mp','bw'].forEach(i=>{$('#'+i).hidden=i!==id});CUR=id;document.body.dataset.scr=id;window.scrollTo(0,0);
   if(id==='home')$('#hs').textContent=tr(SET.pre==='vaishali'?'Vaishali, Bihar':'Apna maan')+': 1 '+tr('dhur')+' = '+SET.dhur+' '+tr('sqft')+', '+tr('lambai')+' '+lu();
-  if(id==='map'){if(!window._ml){window._ml=1;loadDefault()}else if(page||img){size();fit();calc()}}
+  if(id==='map'){if(!window._ml){window._ml=1;loadDefault()}else if(page||img){size();fit();calc()}setTimeout(mfade,0)}
 }
 const hr=(a,b,c)=>{const p=(a+b+c)/2,q=p*(p-a)*(p-b)*(p-c);return q>=0?Math.sqrt(q):NaN};
 function quad(v,sq){const a=L(v.a),b=L(v.b)||(sq?a:0),c=L(v.c)||a,d=L(v.d)||(sq?a:b),e=L(v.e);
   return e>0?hr(a,b,e)+hr(c,d,e):(a+c)/2*((b+d)/2)}
-const qn=v=>v.e>0?'Diagonal se nikala hua sahi area.':'Andaza: corners ko 90° maan kar. Diagonal daalenge to sahi area aayega.';
+const qn=v=>v.e>0?'Diagonal se nikala hua sahi area.':'Andaza: aamne-saamne sides ka average. Chitra diye hue sides se banaya hai; diagonal daalenge to sahi area aur sahi shape aayegi.';
 const QF=sq=>[['a','Uttar (North)'],['b','Purab (East)',sq?'khali = Uttar jaisa':''],['c','Dakshin (South)','khali = Uttar jaisa'],['d','Paschim (West)',sq?'khali = Uttar jaisa':'khali = Purab jaisa'],['e','Diagonal (Uttar-Paschim kone se Dakshin-Purab kone tak)','optional']];
 const T={
  rect:['Rectangle Area (4 side)',QF(false),v=>quad(v,false),qn,['a','b'],'HINT1'],
@@ -546,15 +608,16 @@ function openPad(){REOPEN=openPad;
     px.value=v;const r=ev(v);$('#cr').textContent=r?'= '+r:''};
   show('calc');
 }
-function loadSet(){$('#spre').value=SET.pre;$('#sd').value=SET.dhur;$('#sk').value=SET.kd;$('#sb').value=SET.bk;$('#sl').value=SET.len}
+function loadSet(){$('#spre').value=SET.pre;$('#sd').value=SET.dhur;$('#sk').value=SET.kd;$('#sb').value=SET.bk;$('#sl').value=SET.len;$('#skd').value=SET.kadi>0?SET.kadi:0.66}
 $('#spre').onchange=()=>{SET.pre=$('#spre').value;if(SET.pre==='vaishali')SET.dhur=95;sv();loadSet()};
 ['sd','sk','sb'].forEach(id=>{$('#'+id).oninput=()=>{
   const d=nm($('#sd').value),k=nm($('#sk').value),b=nm($('#sb').value);
   if(d>0)SET.dhur=d;if(k>0)SET.kd=k;if(b>0)SET.bk=b;
   SET.pre=SET.dhur===95?'vaishali':'custom';$('#spre').value=SET.pre;sv()}});
+$('#skd').oninput=()=>{const k=nm($('#skd').value);if(k>0){SET.kadi=k;sv()}};
 $('#sl').onchange=()=>{SET.len=$('#sl').value;sv()};
 document.querySelectorAll('[data-go]').forEach(b=>{b.onclick=()=>{const g=b.dataset.go;
-  if(g==='map')show('map');else if(g==='conv')openConv();else if(g==='pad')openPad();else if(g==='mp')openMp();else if(g==='bw')openBw();else openCalc(g)}});
+  if(g==='map')show('map');else if(g==='conv')openConv();else if(g==='pad')csOpen(true);else if(g==='mp')openMp();else if(g==='bw'){BWFROM='';openBw()}else openCalc(g)}});
 document.querySelectorAll('.back').forEach(b=>{b.onclick=()=>show('home')});
 $('#gset').onclick=()=>{loadSet();show('set')};
 
@@ -570,7 +633,7 @@ function mpDraw(){
 function mpForm(){
   const box=$('#mpf');
   if(!MPO){box.innerHTML='<button id="mpa" class="on wide">'+tr('+ Hissa jodein')+'</button>';$('#mpa').onclick=()=>{MPO=true;MPE=-1;mpForm()};return}
-  const t=T[MPK],ed=MPE>=0?MP[MPE]:null,f=ed&&ed.u!==SET.len?(SET.len==='m'?1/3.28084:3.28084):1;
+  const t=T[MPK],ed=MPE>=0?MP[MPE]:null,f=ed&&ed.u!==SET.len?(LFu(ed.u)/LFu(SET.len)):1;
   box.innerHTML='<div class="cx"><label>'+tr('Shape')+'</label><select id="mpk">'+MPKS.map(k=>'<option value="'+k+'"'+(k===MPK?' selected':'')+'>'+tr(SN[k])+'</option>').join('')+'</select>'+
     '<div class="oc"><button class="sgn'+(MPS>0?' on':'')+'" data-s="1">'+tr('Jodein (+)')+'</button><button class="sgn'+(MPS<0?' on':'')+'" data-s="-1">'+tr('Ghatayein (−)')+'</button></div>'+
     t[1].map(x=>'<div class="row"><label>'+tr(x[1])+' ('+lu()+')</label><input type="number" inputmode="decimal" data-k="'+x[0]+'" placeholder="'+tr(x[2]||'')+'"></div>').join('')+
@@ -662,7 +725,7 @@ function bwSvg(P,parts,cuts,u,names,vl,hd,off){
   cx=Math.max(B.bx+vw/2,Math.min(B.bx+B.bw-vw/2,cx));cy=Math.max(B.by+vh/2,Math.min(B.by+B.bh-vh/2,cy));
   BWV.z=z;BWV.cx=cx;BWV.cy=cy;
   const vx=cx-vw/2,vy=cy-vh/2,fs=m/22/z,rc=m*.07/z;
-  let s='<svg viewBox="'+vx+' '+vy+' '+vw+' '+vh+'" style="width:100%;max-height:340px;display:block;touch-action:'+(z>1?'none':'pan-y')+'">';
+  let s='<svg viewBox="'+vx+' '+vy+' '+vw+' '+vh+'" style="width:100%;height:100%;display:block;touch-action:'+(z>1?'none':'pan-y')+'">';
   parts.forEach((q,i)=>{const c=COL[i%COL.length];s+='<polygon points="'+q.map(p=>p.join(',')).join(' ')+'" fill="'+c+'" fill-opacity=".35" stroke="'+c+'" stroke-width="2" vector-effect="non-scaling-stroke"/>'});
   s+='<polygon points="'+P.map(p=>p.join(',')).join(' ')+'" fill="none" style="stroke:var(--fg)" stroke-width="2" vector-effect="non-scaling-stroke"/>';
   const placed=[],cw=t=>String(t).length*fs*.78*.58,pad=fs*.12;
@@ -708,9 +771,9 @@ function bwSvg(P,parts,cuts,u,names,vl,hd,off){
 }
 function bwFigHtml(){
   const a=BWARGS,svg=bwSvg.apply(null,a),bt='width:36px;height:36px;padding:0;font-size:20px;line-height:1;border-radius:10px;margin:0';
-  return '<div id="bwzw">'+
-    '<div style="display:flex;gap:6px;margin:0 0 6px"><button id="bwzi" style="'+bt+'" aria-label="Zoom in">+</button><button id="bwzo" style="'+bt+'" aria-label="Zoom out">−</button>'+(BWV.z>1.01?'<button id="bwzr" style="'+bt+'" aria-label="Reset zoom">⟲</button>':'')+'</div>'+svg+
-    '<div class="sides">'+tr('Zoom: + / − dabayein ya do ungli se failayein; zoom ke baad ungli se khiskayein.')+(BWHID?' '+tr('Jagah kam hone se kuch disha ke naam chhupe hain. Zoom karein.'):'')+'</div></div>'}
+  return '<div id="bwzw"><div class="bwc">'+
+    '<div class="bwt"><button id="bwzi" style="'+bt+'" aria-label="Zoom in">+</button><button id="bwzo" style="'+bt+'" aria-label="Zoom out">−</button>'+(BWV.z>1.01?'<button id="bwzr" style="'+bt+'" aria-label="Reset zoom">⟲</button>':'')+'</div>'+svg+'</div>'+
+    '<div class="sides" style="margin-top:6px">'+tr('Zoom: + / − dabayein ya do ungli se failayein; zoom ke baad ungli se khiskayein.')+(BWHID?' '+tr('Jagah kam hone se kuch disha ke naam chhupe hain. Zoom karein.'):'')+'</div></div>'}
 function bwViewRender(){const w=$('#bwzw');if(w&&BWARGS)w.outerHTML=bwFigHtml()}
 function bwUser(ev){const svg=$('#bwzw svg');if(!svg)return null;const m=svg.getScreenCTM();if(!m)return null;const p=svg.createSVGPoint();p.x=ev.clientX;p.y=ev.clientY;const q=p.matrixTransform(m.inverse());return{x:q.x,y:q.y,k:m.a}}
 function bwZoomTo(nz,fx,fy,ax,ay){if(!BWARGS)return;const B=bwBase(BWARGS[0],BWARGS[5]);nz=Math.max(1,Math.min(8,nz));const vw=B.bw/nz,vh=B.bh/nz;BWV.z=nz;BWV.cx=ax-fx*vw+vw/2;BWV.cy=ay-fy*vh+vh/2;bwViewRender()}
@@ -769,7 +832,7 @@ function bwDragMove(ev){
   if(gl*gh>0)th=Math.abs(gl)<Math.abs(gh)?lo:hi;
   else{for(let i=0;i<40;i++){const m2=(lo+hi)/2,gm=g(m2);if(isNaN(gm))return;if((gm>0)===(gl>0)){lo=m2;gl=gm}else hi=m2}th=(lo+hi)/2}
   const r=c.shAt(th,cu.T);if(!r)return;
-  const d=SET.len==='m'?r.sh/3.28084:r.sh,f=SET.len==='m'?100:10,v=Math.sign(d)*Math.floor(Math.abs(d)*f)/f;
+  const d=r.sh/LF(),f=SET.len==='m'?100:10,v=Math.sign(d)*Math.floor(Math.abs(d)*f)/f;
   BWSH[BWDRAG.k]=String(v);const inp=document.querySelector('#bwf .bsh[data-i="'+BWDRAG.k+'"]');if(inp)inp.value=v;
   bwGo(true)}
 let bwRaf=0,bwLast=null;
@@ -834,7 +897,7 @@ function partSides(q,P,off){
   return o.join(', ');
 }
 
-const ul=()=>SET.len==='m'?'m':'ft';
+const ul=()=>SET.len==='m'?'m':SET.len==='kadi'?'kadi':'ft';
 function dirFrom(mx,my,off){const br=Math.atan2(mx,-my)*180/Math.PI,real=((br-90*off)%360+360)%360;return tr(DN[Math.round(real/45)%8])}
 function compassSvg(cx,cy,r,off){
   const th=off*Math.PI/2,vx=Math.sin(th),vy=-Math.cos(th),px=-vy,py=vx;
@@ -856,25 +919,32 @@ function polyFig(P,lab,extra,off,nc){
   if(!nc)s+=compassSvg(x0+w+pd-r*1.6,y0-pdt+r*2.2,r,off||0);
   return s+'</svg>';
 }
+function quadPts(a,b,c,d,e){
+  const x=(a*a+e*e-b*b)/(2*a),y2=e*e-x*x;if(!(y2>0))return null;
+  const y=Math.sqrt(y2),u=[x/e,y/e],t=(d*d-c*c+e*e)/(2*e),hs=d*d-t*t;if(hs<0)return null;
+  const nn=[-u[1],u[0]],s2=-u[1]*a,mk=g=>[u[0]*t+g*nn[0]*Math.sqrt(hs),u[1]*t+g*nn[1]*Math.sqrt(hs)];
+  let p4=mk(1);if((u[0]*p4[1]-u[1]*p4[0])*s2>0)p4=mk(-1);
+  return [[0,0],[a,0],[x,y],p4];
+}
 function calcFig(k,v){
   const f=x=>(+x.toFixed(1)).toString(),U1=' '+ul();
   if(k==='rect'||k==='sq'){
-    const sq=k==='sq',a=v.a,b=v.b||(sq?a:0),c=v.c||a,d=v.d||(sq?a:b),e=v.e;let P,ex=[];
-    if(e>0){
-      const x=(a*a+e*e-b*b)/(2*a),y2=e*e-x*x;if(!(y2>0))return '';
-      const u=[x/e,Math.sqrt(y2)/e],t=(d*d-c*c+e*e)/(2*e),hs=d*d-t*t;if(hs<0)return '';
-      const nn=[-u[1],u[0]],s2=-u[1]*a,mk=g=>[u[0]*t+g*nn[0]*Math.sqrt(hs),u[1]*t+g*nn[1]*Math.sqrt(hs)];
-      let p4=mk(1);if((u[0]*p4[1]-u[1]*p4[0])*s2>0)p4=mk(-1);
-      P=[[0,0],[a,0],[x,Math.sqrt(y2)],p4];ex=[[P[0],P[2]]];
-    }else{const w=(a+c)/2,hh=(b+d)/2;P=[[0,0],[w,0],[w,hh],[0,hh]]}
+    const sq=k==='sq',a=v.a,b=v.b||(sq?a:0),c=v.c||a,d=v.d||(sq?a:b),e=v.e>0?v.e:Math.hypot((a+c)/2,(b+d)/2);
+    let P=quadPts(a,b,c,d,e),ex=v.e>0&&P?[[P[0],P[2]]]:[];
+    if(!P){const w=(a+c)/2,hh=(b+d)/2;P=[[0,0],[w,0],[w,hh],[0,hh]];ex=[]}
     return polyFig(P,[{i:0,t:tr('Uttar')+': '+f(a)+U1},{i:1,t:tr('Purab')+': '+f(b)+U1},{i:2,t:tr('Dakshin')+': '+f(c)+U1},{i:3,t:tr('Paschim')+': '+f(d)+U1}],ex,0,false);
   }
   if(k==='par'){
-    const a=v.a,b=v.b;let h=v.h,x0;
-    if(h>0)x0=(b-a)/2;
-    else{const c=v.c,d=v.d,dd=b-a;if(!(c>0&&d>0)||Math.abs(dd)<1e-9)return '';x0=(dd*dd-c*c+d*d)/(2*dd);const q=d*d-x0*x0;if(!(q>0))return '';h=Math.sqrt(q)}
+    const a=v.a,b=v.b,c=v.c,d=v.d,dd=b-a;let h=v.h,x0;
+    if(h>0){
+      x0=dd/2;
+      if(c>0&&d>0&&d>=h){const s=Math.sqrt(d*d-h*h),er=xx=>Math.abs(c*c-((dd-xx)*(dd-xx)+h*h));x0=er(s)<=er(-s)?s:-s}
+    }else{
+      if(!(c>0&&d>0)||Math.abs(dd)<1e-9)return '';
+      x0=(dd*dd-c*c+d*d)/(2*dd);const q=d*d-x0*x0;if(!(q>0))return '';h=Math.sqrt(q);
+    }
     const P=[[x0,0],[x0+a,0],[b,h],[0,h]];
-    return polyFig(P,[{i:0,t:tr('Uttar')+': '+f(a)+U1},{i:1,t:tr('Purab')+(v.c>0?': '+f(v.c)+U1:'')},{i:2,t:tr('Dakshin')+': '+f(b)+U1},{i:3,t:tr('Paschim')+(v.d>0?': '+f(v.d)+U1:'')},{p:[x0+2*Math.max(a,b)*.02,h/2],t:f(h)+U1}],[[[x0,0],[x0,h]]],0,false);
+    return polyFig(P,[{i:0,t:tr('Uttar')+': '+f(a)+U1},{i:1,t:tr('Purab')+(c>0?': '+f(c)+U1:'')},{i:2,t:tr('Dakshin')+': '+f(b)+U1},{i:3,t:tr('Paschim')+(d>0?': '+f(d)+U1:'')},{p:[x0+2*Math.max(a,b)*.02,h/2],t:f(h)+U1}],[[[x0,0],[x0,h]]],0,false);
   }
   if(k==='rt'){
     const b=v.b,h=v.h;
@@ -886,6 +956,61 @@ function calcFig(k,v){
   }
   return '';
 }
+
+const csEv=e=>ev(e.replace(/[×÷−]/g,c=>({'×':'*','÷':'/','−':'-'}[c])));
+function csPress(k,st){
+  let e=st.e,done=st.done,prev=st.prev||'';const isOp=c=>'+−×÷'.includes(c),last=e.slice(-1);
+  if(k==='C')return {e:'',done:false,prev:''};
+  if(k==='⌫')return done?{e:'',done:false,prev:''}:{e:e.slice(0,-1),done:false,prev:''};
+  if(k==='='){const r=csEv(e.replace(/[+−×÷.(]+$/,''));if(r==='')return st;return {e:r.replace('-','−'),done:true,prev:e}}
+  if(done&&!isOp(k)){e='';prev=''}
+  done=false;
+  if(isOp(k)){
+    if(e==='')return {e:k==='−'?'−':'',done,prev:''};
+    if(e==='−')return {e,done,prev:''};
+    if(last==='(')return {e:k==='−'?e+k:e,done,prev};
+    if(isOp(last))e=e.slice(0,-1);
+    return {e:e+k,done,prev};
+  }
+  if(k==='.'){const tok=e.split(/[+−×÷()]/).pop();if(tok.includes('.'))return {e,done,prev};if(tok==='')k='0.'}
+  if(k==='('){if(/[\d.)]$/.test(e))e+='×';return {e:e+k,done,prev}}
+  if(k===')'){const o=(e.match(/\(/g)||[]).length,c=(e.match(/\)/g)||[]).length;if(o<=c||/[+−×÷(]$/.test(e))return {e,done,prev};return {e:e+k,done,prev}}
+  if(last===')')e+='×';
+  return {e:e+k,done,prev};
+}
+let CS={e:'',done:false,prev:'',open:false},LASTIN=null;
+const csRes=()=>{const e=CS.e;if(e==='')return '0';return CS.done?e.replace('−','-'):(csEv(e.replace(/[+−×÷.(]+$/,''))||'0')};
+function csDraw(){
+  const sp=s=>s.replace(/([+×÷])/g,' $1 ').replace(/(.)−/g,'$1 − ');
+  $('#cexp').textContent=CS.done?sp(CS.prev)+' =':(/[+−×÷()]/.test(CS.e)?sp(CS.e):'');
+  $('#cres').textContent=csRes().replace('-','−');
+}
+function csOpen(v){
+  CS.open=v;const s=$('#csheet');
+  if(v){s.hidden=false;requestAnimationFrame(()=>requestAnimationFrame(()=>s.classList.add('open')))}
+  else{s.classList.remove('open');setTimeout(()=>{if(!CS.open)s.hidden=true},230)}
+  $('#cfab').hidden=v;csDraw();
+}
+$('#cfab').onclick=()=>csOpen(true);
+$('#cx').onclick=()=>csOpen(false);
+$('#ckeys').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;CS=Object.assign(CS,csPress(b.dataset.k,CS));csDraw()});
+$('#cins').onclick=()=>{const r=csRes();if(LASTIN&&LASTIN.offsetParent!==null&&r){LASTIN.value=r;LASTIN.dispatchEvent(new Event('input',{bubbles:true}));LASTIN.focus()}};
+document.addEventListener('focusin',e=>{const t=e.target;if(t&&t.tagName==='INPUT'&&(t.type==='number'||t.type==='text')&&!t.readOnly&&!t.closest('#csheet'))LASTIN=t});
+document.addEventListener('keydown',e=>{
+  if(!CS.open||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+  const m={'*':'×','/':'÷','-':'−','Enter':'=','Backspace':'⌫','c':'C','C':'C'},k=m[e.key]||e.key;
+  if(e.key==='Escape'){csOpen(false);return}
+  if(/^[0-9.+×÷−=()C⌫]$/.test(k)){e.preventDefault();CS=Object.assign(CS,csPress(k,CS));csDraw()}
+});
+
+let BWFROM='';
+$('#mbt').onclick=()=>{
+  if(pts.length<3||!ppf){msg('Pehle Map Measurement me kam se kam 3 pin lagakar plot banayein aur scale set karein.');return}
+  BWFROM='map';BWS='map';openBw();
+};
+document.querySelector('#bw .back').onclick=()=>{const m=BWFROM==='map';BWFROM='';show(m?'map':'home')};
+const mbar=$('#mbar'),mfade=()=>{mbar.classList.toggle('ml',mbar.scrollLeft>4);mbar.classList.toggle('mr',mbar.scrollLeft+mbar.clientWidth<mbar.scrollWidth-4)};
+mbar.addEventListener('scroll',mfade,{passive:true});window.addEventListener('resize',mfade);
 $('#mb').onclick=()=>ovl('mpn');$('#lg').onclick=()=>ovl('lpn');
 $('#ovl').onclick=e=>{if(e.target.id==='ovl')ovx()};
 document.querySelectorAll('[data-pg]').forEach(b=>{b.onclick=()=>nav(b.dataset.pg)});
